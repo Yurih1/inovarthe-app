@@ -1,0 +1,63 @@
+.header {
+    background-color: #f8f9fa;
+  }
+  
+  .top-bar {
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  .top-bar .shopping-cart {
+    position: relative;
+  }
+  
+  .navbar {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .navbar-brand .logo {
+    width: 100px; /* Ajuste o tamanho da logo conforme necessário */
+  }
+  
+  .search-form input {
+    border-radius: 50px;
+    border: 1px solid #28a745;
+  }
+  
+  .search-form button {
+    background-color: #28a745;
+    border: none;
+    border-radius: 50px;
+    color: white;
+  }
+  
+  .navbar-nav .nav-item .nav-link {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .navbar-nav .nav-item .btn-success {
+    background-color: #28a745;
+  }
+  
+  .navbar-nav .nav-item .nav-link:hover {
+    color: #28a745;
+}
+
+.navbar-nav .nav-item .badge {
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px 8px;
+  border-radius: 50%;
+  color: white;
+}
+
+.navbar-nav .nav-item .position-relative {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.navbar-nav .nav-item .badge.bg-danger {
+  background-color: #dc3545; /* Cor do contador (vermelho) */
+}
