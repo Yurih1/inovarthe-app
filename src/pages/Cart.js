@@ -4,6 +4,28 @@ import './Cart.css';
 
 function Cart() {
   const { cart, removeFromCart, clearCart, updateQuantity } = useCart();
+  const handlePurchase = () => {
+    if (cart.length === 0) return;
+  
+    // Calcular o total geral do carrinho
+    const totalGeral = cart.reduce((acc, product) => {
+      const totalPrice = parseFloat(product.PrecoVendaFormatado.replace(',', '.')) * product.quantity;
+      return acc + totalPrice;
+    }, 0).toFixed(2);
+  
+    // Construir a mensagem com os detalhes dos produtos no carrinho
+    const productDetails = cart.map(product => {
+      const totalPrice = (parseFloat(product.PrecoVendaFormatado.replace(',', '.')) * product.quantity).toFixed(2);
+      return `- ${product.Nome} (Quantidade: ${product.quantity}, Preço unitário: R$ ${product.PrecoVendaFormatado}, Total: R$ ${totalPrice.replace('.', ',')})`;
+    }).join('\n');
+  
+    //]
+    const message = `Olá, gostaria de finalizar a compra com os seguintes produtos:\n\n${productDetails}\n\nTotal geral: R$ ${totalGeral.replace('.', ',')}\n\nVendido por: Inovarthe!!`;
+  
+    // URL do WhatsApp
+    const whatsappUrl = `https://wa.me/5511999999999?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
 
   return (
     <div className="cart-container container py-4">
@@ -33,10 +55,7 @@ function Cart() {
                     Preço unitário: <strong>R$ {product.PrecoVendaFormatado}</strong>
                   </p>
                   <p className="text-muted">
-                    Parcelado no cartão em até  <strong>10x</strong> sem juros: <strong>R$ {new Intl.NumberFormat('pt-BR', {
-                    style: 'currency',
-                    currency: 'BRL',
-                    }).format(parseFloat(product.PrecoVendaFormatado) / 10)}</strong>
+                    Parcelado no cartão em até  <strong>10x</strong> sem juros<strong></strong>
                   </p>
                   <div className="badges">
                     {/* <span className="badge bg-warning text-dark me-2">OFERTA BLACK FRIDAY</span> */}
@@ -78,6 +97,10 @@ function Cart() {
           {/* Botão para Limpar o Carrinho */}
           <button className="btn btn-danger mt-3" onClick={clearCart}>
             <i className="bi bi-trash"></i> REMOVER TODOS OS PRODUTOS
+          </button>
+          {/* Botão para finalizar a compra */}
+          <button variant="success" className="btn btn-success mt-3 ms-2" onClick={handlePurchase}>
+            FINALIZAR COMPRA!
           </button>
         </div>
       ) : (

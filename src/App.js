@@ -7,20 +7,28 @@ import ProductDetails from './pages/ProductDetails';
 import AboutUs from './pages/AboutUs';
 import Contact from './pages/Contact';
 import Cart from './pages/Cart';
+import { ProductProvider } from './pages/ProductContext'; // IMPORTANTE
+import './App.css';
 
 function App() {
   return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Products />} />
-        <Route path="/product/:id" element={<ProductDetails />} />
-        <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/carrinho" element={<Cart />} />
-      </Routes>
-      <Footer />
-    </Router>
+    <ProductProvider>
+      <div className="page-container">
+        <Router>
+          <Header />
+          <div className="content-wrap">
+            <Routes>
+              <Route path="/" element={<Products />} />
+              <Route path="/product/:id" element={<ProductDetails />} />
+              <Route path="/about-us" element={<AboutUs />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/carrinho" element={<Cart />} />
+            </Routes>
+          </div>
+          <Footer />
+        </Router>
+      </div>
+    </ProductProvider>
   );
 }
 
